@@ -1,0 +1,30 @@
+- apt_repository: repo='ppa:brightbox/ruby-ng-experimental' state=present
+- apt_repository: repo='ppa:pitti/systemd' state=present
+
+- name: Install deps
+  apt: pkg={{ item }} state=present update_cache=yes
+  with_items:
+    - libxml2
+    - ruby2.0
+    - ruby2.0-dev
+    - libxslt1-dev
+    - python-pip
+    - systemd
+
+- gem: name=riemann-tools state=present
+
+- name: install riemann-tools in the system ruby just for good measure
+  command: 'gem install riemann-tools'
+
+- set_fact: riemann_use_system_d={{(ansible_distribution == 'Debian' and ansible_distribution_version | version_compare('8', '>=')) or (ansible_distribution == 'CentOS' and ansible_distribution_version | version_compare('7', '>=')) or (ansible_distribution == 'Ubuntu' and ansible_distribution_version | version_compare('15', '>=')) }}
+  tags:
+    - always
+
+- fail: msg="This system does not use systemd, not continuing."
+  when: not riemann_use_system_d
+
+
+- name: Copy Riemann Systemd File for Instance
+  template: src=riemann_health.service.j2 dest="{{system_d_config_dir}}/system/riemann_health.service" mode=0644 force=yes
+  when: riemann_use_system_d
+  notify: reload riemann_health

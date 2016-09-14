@@ -1,0 +1,23 @@
+[Unit]
+Description=Riemann Health pings
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+
+User=root
+Group=root
+{% if riemann_extra_args %}
+ExecStart=/usr/local/bin/riemann-health --interval=20 --host={{ riemann_server }} --port={{ riemann_port }} --tag=riemann-health {{riemann_extra_args}}
+{% else %}
+ExecStart=/usr/local/bin/riemann-health --interval=20 --host={{ riemann_server }} --port={{ riemann_port }} --tag=riemann-health
+{% endif %}
+
+# Connects standard output to /dev/null
+StandardOutput=journal
+
+# Connects standard error to journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

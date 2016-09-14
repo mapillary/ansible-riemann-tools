@@ -1,0 +1,7 @@
+
+- name: reload riemann_health
+  shell: systemctl --system daemon-reload
+  notify: restart riemann-health
+
+- name: restart riemann-health
+  service: name=riemann_health state=restarted enabled=yes
