@@ -23,8 +23,6 @@
 - fail: msg="This system does not use systemd, not continuing."
   when: not riemann_use_system_d
 
-- shell: gem environment | grep \\-\ INSTALLATION\ DIRECTORY | awk '{print $NF}'
-  register: gem_path
 
 - name: Copy Riemann Systemd File for Instance
   template: src=riemann_health.service.j2 dest="{{system_d_config_dir}}/system/riemann_health.service" mode=0644 force=yes
