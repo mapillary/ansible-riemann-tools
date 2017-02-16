@@ -8,7 +8,7 @@ After=network-online.target
 User=root
 Group=root
 {% if riemann_extra_args %}
-ExecStart=/usr/local/bin/riemann-health --interval=20 --host={{ riemann_server }} --port={{ riemann_port }} --tag=riemann-health {{riemann_extra_args}}
+ExecStart=/bin/sh -c "/usr/local/bin/riemann-health --interval=20 --host={{ riemann_server }} --port={{ riemann_port }} --tag=riemann-health {{riemann_extra_args}}"
 {% else %}
 ExecStart=/usr/local/bin/riemann-health --interval=20 --host={{ riemann_server }} --port={{ riemann_port }} --tag=riemann-health
 {% endif %}
