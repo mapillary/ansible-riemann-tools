@@ -8,9 +8,9 @@ After=network-online.target
 User=root
 Group=root
 {% if riemann_extra_args %}
-ExecStart={{ gem_path.stdout }}/bin/riemann-health --interval=20 --host={{ riemann_server }} --port={{ riemann_port }} --tag=riemann-health {{riemann_extra_args}}
+ExecStart={{ gem_path.stdout }}/wrappers/riemann-health --interval=20 --host={{ riemann_server }} --port={{ riemann_port }} --tag=riemann-health {{riemann_extra_args}}
 {% else %}
-ExecStart={{ gem_path.stdout }}/bin/riemann-health --interval=20 --host={{ riemann_server }} --port={{ gem_path }} --tag=riemann-health
+ExecStart={{ gem_path.stdout }}/wrappers/riemann-health --interval=20 --host={{ riemann_server }} --port={{ gem_path }} --tag=riemann-health
 {% endif %}
 
 # Connects standard output to /dev/null
