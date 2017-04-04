@@ -25,7 +25,7 @@
 
 
 - name: Copy Riemann Systemd File for Instance
-  template: src=riemann_health.service.j2 dest="{{system_d_config_dir}}/system/{{ item }}.service" mode=0644 force=yes
+  template: src=riemann.service.j2 dest="{{system_d_config_dir}}/system/{{ item }}.service" mode=0644 force=yes
   when: riemann_use_system_d
   notify: reload riemann_health
   with_items:
