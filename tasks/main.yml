@@ -23,6 +23,24 @@
 - fail: msg="This system does not use systemd, not continuing."
   when: not riemann_use_system_d
 
+# to make sure any systemd service in the old naming convention (with _ instead of -) is disabled
+- name: check if legacy systemd service exists
+  stat:
+    path: /etc/systemd/system/riemann_health.service
+  register:
+    legacy_systemd
+- name: disable legacy systemd service
+  service:
+    name: riemann_health
+    enabled: no
+    state: stopped
+  when: legacy_systemd.stat.exists == True
+- name: remove legacy systemd file
+  file:
+    path: /etc/systemd/system/riemann_health.service
+    state: absent
+  when: legacy_systemd.stat.exists == True
+# end of disabling legacy systemd service
 
 - name: Copy Riemann Systemd File for Instance
   template: src=riemann.service.j2 dest="{{system_d_config_dir}}/system/{{ item }}.service" mode=0644 force=yes
