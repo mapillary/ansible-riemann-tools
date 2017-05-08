@@ -11,11 +11,15 @@
     - python-pip
     - systemd
 
-- gem: name=riemann-tools state=present
+- name: isntall riemann-tools gem
+  gem:
+    name: riemann-tools
+    user_install: no
 
 - name: install extra gems
   gem:
     name: "{{ item }}"
+    user_install: no
   with_items:
     "{{ riemann_extra_gems }}"
 
