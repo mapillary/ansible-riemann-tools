@@ -11,10 +11,13 @@
     - python-pip
     - systemd
 
-- name: isntall riemann-tools gem
+- name: inatall riemann-tools
   gem:
-    name: riemann-tools
+    name: "{{ item }}"
     user_install: no
+  with_items:
+    - riemann-tools
+    - riemann-client
 
 - name: install extra gems
   gem:
