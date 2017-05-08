@@ -11,7 +11,7 @@
     - python-pip
     - systemd
 
-- name: inatall riemann-tools
+- name: install riemann-tools
   gem:
     name: "{{ item }}"
     user_install: no
