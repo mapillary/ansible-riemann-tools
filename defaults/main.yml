@@ -3,3 +3,4 @@ system_d_config_dir: /etc/systemd
 riemann_server: mapillary-riemann-server.mapillary.io
 riemann_port: 5555
 riemann_systemd_plugins: ["riemann-health"]
+riemann_extra_gems: []

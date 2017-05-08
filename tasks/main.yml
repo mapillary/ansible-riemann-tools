@@ -13,6 +13,12 @@
 
 - gem: name=riemann-tools state=present
 
+- name: install extra gems
+  gem:
+    name: "{{ item }}"
+  with_items:
+    "{{ riemann_extra_gems }}"
+
 - name: install riemann-tools in the system ruby just for good measure
   command: 'gem install riemann-tools'
 
