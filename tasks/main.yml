@@ -26,9 +26,6 @@
   with_items:
     "{{ riemann_extra_gems }}"
 
-- name: install riemann-tools in the system ruby just for good measure
-  command: 'gem install riemann-tools'
-
 - set_fact: riemann_use_system_d={{(ansible_distribution == 'Debian' and ansible_distribution_version | version_compare('8', '>=')) or (ansible_distribution == 'CentOS' and ansible_distribution_version | version_compare('7', '>=')) or (ansible_distribution == 'Ubuntu' and ansible_distribution_version | version_compare('15', '>=')) }}
   tags:
     - always
