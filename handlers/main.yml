@@ -1,9 +1,11 @@
 ---
-- name: reload riemann_health
+- name: reload systemd
+  listen: reload riemann agents
   shell: systemctl --system daemon-reload
   notify: restart riemann-health
 
-- name: restart riemann-health
+- name: restart services
+  listen: restart riemann agents
   service:
     name: "{{ item }}"
     state: restarted

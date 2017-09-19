@@ -59,6 +59,8 @@
     dest: "{{system_d_config_dir}}/system/{{ item }}.service"
     mode: 0644
   when: riemann_use_system_d
-  notify: reload riemann_health
+  notify:
+    - reload riemann agents
+    - restart riemann agents
   with_items:
     - "{{ riemann_systemd_plugins }}"
