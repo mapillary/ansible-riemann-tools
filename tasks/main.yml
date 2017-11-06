@@ -64,3 +64,11 @@
     - restart riemann agents
   with_items:
     - "{{ riemann_systemd_plugins }}"
+
+- name: enable service
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  with_items:
+    - "{{ riemann_systemd_plugins }}"
