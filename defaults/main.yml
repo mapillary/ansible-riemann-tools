@@ -4,3 +4,5 @@ riemann_server: mapillary-riemann-server.mapillary.io
 riemann_port: 5555
 riemann_systemd_plugins: ["riemann-health"]
 riemann_extra_gems: []
+
+riemann_extra_args: ""
