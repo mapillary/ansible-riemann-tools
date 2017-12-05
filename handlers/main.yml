@@ -10,4 +10,4 @@
     state: restarted
     enabled: yes
   with_items:
-    - "{{ riemann_systemd_plugins }}"
+    - "{{ riemann_tools_systemd_plugins }}"

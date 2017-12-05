@@ -23,7 +23,7 @@
     name: "{{ item }}"
     user_install: no
   with_items:
-    "{{ riemann_extra_gems }}"
+    "{{ riemann_tools_extra_gems }}"
 
 - set_fact: riemann_use_system_d={{(ansible_distribution == 'Debian' and ansible_distribution_version | version_compare('8', '>=')) or (ansible_distribution == 'CentOS' and ansible_distribution_version | version_compare('7', '>=')) or (ansible_distribution == 'Ubuntu' and ansible_distribution_version | version_compare('15', '>=')) }}
   tags:
@@ -56,14 +56,14 @@
 - name: Copy Riemann Systemd File for Instance
   template:
     src: riemann.service.j2
-    dest: "{{system_d_config_dir}}/system/{{ item }}.service"
+    dest: "{{ riemann_tools_system_d_config_dir }}/system/{{ item }}.service"
     mode: 0644
   when: riemann_use_system_d
   notify:
     - reload riemann agents
     - restart riemann agents
   with_items:
-    - "{{ riemann_systemd_plugins }}"
+    - "{{ riemann_tools_systemd_plugins }}"
 
 - name: enable service
   service:
@@ -71,4 +71,4 @@
     state: started
     enabled: yes
   with_items:
-    - "{{ riemann_systemd_plugins }}"
+    - "{{ riemann_tools_systemd_plugins }}"

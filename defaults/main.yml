@@ -1,8 +1,8 @@
 ---
-system_d_config_dir: /etc/systemd
-riemann_server: mapillary-riemann-server.mapillary.io
-riemann_port: 5555
-riemann_systemd_plugins: ["riemann-health"]
-riemann_extra_gems: []
+riemann_tools_system_d_config_dir: /etc/systemd
+riemann_tools_riemann_server: mapillary-riemann-server.mapillary.io
+riemann_tools_riemann_port: 5555
+riemann_tools_systemd_plugins: ["riemann-health"]
+riemann_tools_extra_gems: []
 
-riemann_extra_args: ""
+riemann_tools_extra_args: ""
