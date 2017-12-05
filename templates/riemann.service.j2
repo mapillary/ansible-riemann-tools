@@ -7,7 +7,7 @@ After=network-online.target
 
 User=root
 Group=root
-{% if riemann_extra_args %}
+{% if riemann_tools_extra_args %}
 ExecStart=/bin/sh -c "/usr/local/bin/{{ item }} --interval=20 --host={{ riemann_tools_riemann_server }} --port={{ riemann_tools_riemann_port }} --tag={{ item }} {{riemann_tools_extra_args}}"
 {% else %}
 ExecStart=/usr/local/bin/{{ item }} --interval=20 --host={{ riemann_tools_riemann_server }} --port={{ riemann_tools_riemann_port }} --tag={{ item }}
