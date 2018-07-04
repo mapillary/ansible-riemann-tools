@@ -2,13 +2,9 @@
 - apt_repository: repo='ppa:pitti/systemd' state=present
 
 - name: Install deps
-  apt: pkg={{ item }} state=present update_cache=yes
-  with_items:
-    - libxml2
-    - ruby2.0
-    - ruby2.0-dev
-    - libxslt1-dev
-    - python-pip
+  apt:
+    name: ["libxml2", "ruby2.0", "ruby2.0-dev", "libxslt1-dev"]
+    update_cache: yes
 
 - name: install riemann-tools
   gem:
