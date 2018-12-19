@@ -1,0 +1,21 @@
+{
+  "repo": "ansible-riemann-tools",
+  "description": "ansible role for riemann-tools",
+  "frameworks": [],
+  "language": "ansible",
+  "maintainers": ["martinskans"],
+  "providers": [
+    {
+      "name": "ansible_riemann_tools_role_provider",
+      "description": "provider for the ansible riemann-tools role",
+      "type": "ansible_role",
+      "dependencies": [],
+      "services": [
+        {
+          "name": "ansible_riemann_tools_role",
+          "description": "ansible role for riemann-tools"
+        }
+      ]
+    }
+  ]
+}
