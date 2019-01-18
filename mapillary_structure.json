@@ -3,7 +3,7 @@
   "description": "ansible role for riemann-tools",
   "frameworks": [],
   "language": "ansible",
-  "maintainers": ["martinskans"],
+  "maintainers": ["martinskans", "fbertetto"],
   "providers": [
     {
       "name": "ansible_riemann_tools_role_provider",
