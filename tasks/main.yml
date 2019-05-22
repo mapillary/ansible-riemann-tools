@@ -26,7 +26,7 @@
     - always
 
 - fail: msg="This system does not use systemd, not continuing."
-  when: not riemann_use_system_d
+  when: not riemann_use_system_d|bool
 
 # to make sure any systemd service in the old naming convention (with _ instead of -) is disabled
 - name: check if legacy systemd service exists
@@ -54,7 +54,7 @@
     src: riemann.service.j2
     dest: "{{ riemann_tools_system_d_config_dir }}/system/{{ item }}.service"
     mode: 0644
-  when: riemann_use_system_d
+  when: riemann_use_system_d|bool
   notify:
     - reload riemann agents
     - restart riemann agents
